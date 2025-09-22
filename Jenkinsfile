@@ -10,10 +10,7 @@ pipeline {
         BACKEND_DIR = 'LearningHub_back'
         FRONTEND_DIR = 'LearningHub_front'
 
-        TOMCAT_URL = 'http://localhost:9090/manager/text'
-        TOMCAT_USER = 'admin'
-        TOMCAT_PASS = 'admin'
-
+        TOMCAT_HOME = 'C:\\apache-tomcat-9.0.96'
         BACKEND_WAR = 'lhubback.war'
         FRONTEND_WAR = 'lhubfront.war'
     }
@@ -25,15 +22,15 @@ pipeline {
             }
         }
 
-        stage('Build Frontend ()') {
+        stage('Build Frontend') {
             steps {
                 dir("${env.FRONTEND_DIR}") {
                     script {
                         def nodeHome = tool name: 'NODE_HOME', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
-                        env.PATH = "${nodeHome}/bin:${env.PATH}"
+                        env.PATH = "${nodeHome}\\;${nodeHome}\\bin;${env.PATH}"
                     }
-                    sh 'npm install'
-                    sh 'npm run build'
+                    bat 'npm install'
+                    bat 'npm run build'
                 }
             }
         }
@@ -41,11 +38,11 @@ pipeline {
         stage('Package Frontend as WAR') {
             steps {
                 dir("${env.FRONTEND_DIR}") {
-                    sh """
-                        mkdir -p frontapp1_war/WEB-INF
-                        cp -r dist/* lhubfront_war/
-                        jar -cvf ../../${FRONTEND_WAR} -C lhubfront_war .
-                    """
+                    bat '''
+                        if not exist lhubfront_war mkdir lhubfront_war
+                        xcopy build\\* lhubfront_war\\ /E /I /Y
+                        jar -cvf ..\\..\\%FRONTEND_WAR% -C lhubfront_war .
+                    '''
                 }
             }
         }
@@ -53,33 +50,21 @@ pipeline {
         stage('Build Backend (Spring Boot WAR)') {
             steps {
                 dir("${env.BACKEND_DIR}") {
-                    sh 'mvn clean package'
-                    sh "cp target/*.war ../../${BACKEND_WAR}"
+                    bat 'mvn clean package -DskipTests'
+                    bat "copy target\\*.war ..\\..\\%BACKEND_WAR% /Y"
                 }
             }
         }
 
         stage('Deploy Backend to Tomcat (/lhubback)') {
             steps {
-                script {
-                    sh """
-                        curl -u ${TOMCAT_USER}:${TOMCAT_PASS} \\
-                          --upload-file ${BACKEND_WAR} \\
-                          "${TOMCAT_URL}/deploy?path=/lhubback&update=true"
-                    """
-                }
+                bat "copy %BACKEND_WAR% %TOMCAT_HOME%\\webapps\\%BACKEND_WAR% /Y"
             }
         }
 
         stage('Deploy Frontend to Tomcat (/lhubfront)') {
             steps {
-                script {
-                    sh """
-                        curl -u ${TOMCAT_USER}:${TOMCAT_PASS} \\
-                          --upload-file ${FRONTEND_WAR} \\
-                          "${TOMCAT_URL}/deploy?path=/lhubfront&update=true"
-                    """
-                }
+                bat "copy %FRONTEND_WAR% %TOMCAT_HOME%\\webapps\\%FRONTEND_WAR% /Y"
             }
         }
     }
