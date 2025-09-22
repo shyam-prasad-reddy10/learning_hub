@@ -1,0 +1,133 @@
+/* Top navigation bar */
+.top-navbar {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #f8f9fa; /* Light background */
+  padding: 10px;
+  border-bottom: 1px solid #ddd; /* Subtle border at the bottom */
+  position: fixed; /* Fix the top navbar at the top */
+  top: 0;
+  width: 100%; /* Ensure it spans the full width */
+  z-index: 1000; /* Ensure it stays above other elements */
+}
+
+/* Course navigation bar */
+.course-navbar {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #f8f9fa; /* Light background */
+  padding: 10px;
+  border-bottom: 1px solid #ddd; /* Subtle border at the bottom */
+  position: fixed; /* Fix the courses navbar below the top navbar */
+  top: 50px; /* Adjusted to align below the top navbar */
+  width: 100%; /* Ensure it spans the full width */
+  z-index: 999; /* Ensure it stays above the side navbar but below the top navbar */
+}
+
+/* Course button styling */
+.course-button {
+  background-color: #8be292; /* Green background */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  flex: 1;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.course-button.active,
+.course-button:hover {
+  background-color: #007bff; /* Blue background on hover */
+}
+
+/* Side navigation bar for topics */
+.side-navbar {
+  width: 250px;
+  background-color: #5a5754; /* Dark gray background */
+  padding: 20px;
+  position: fixed; /* Fix the side navbar */
+  top: 100px; /* Adjusted to align below the top and courses navbars */
+  left: 0;
+  height: calc(100% - 100px); /* Full height minus the combined height of navbars */
+  overflow-y: auto; /* Add vertical scroll bar */
+  z-index: 998; /* Ensure it stays above the main content but below the navbars */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border-right: 1px solid #ddd; /* Subtle border for separation */
+}
+
+/* Side navbar heading */
+.side-navbar h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #ffffff; /* White text for the heading */
+  font-weight: bold;
+  border-bottom: 2px solid #ffffff; /* White underline for the heading */
+  padding-bottom: 5px;
+}
+
+/* Side navbar list */
+.side-navbar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+/* Side navbar list items */
+.side-navbar ul li {
+  padding: 5px 0; /* Reduced padding for less space between items */
+  cursor: pointer;
+  font-size: 1rem; /* Adjusted font size for better readability */
+  color: #ffffff; /* White text color */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hover effect for list items */
+.side-navbar ul li:hover {
+  color: #5a5754; /* Dark gray text on hover */
+  background-color: #5a5754; /* White background on hover */
+  border-radius: 5px; /* Rounded corners for hover effect */
+  padding-left: 10px; /* Indent on hover */
+}
+
+/* Side navbar list items (anchor links) */
+.side-navbar ul li a {
+  display: block;
+  padding: 5px 10px; /* Reduced padding for anchor links */
+  color: #ffffff; /* White text */
+  text-decoration: none; /* Remove underline */
+  font-size: 1rem;
+  font-family: Arial, sans-serif; /* Explicitly set a font family */
+  border-radius: 5px;
+  transition: background-color 0.3s ease, padding-left 0.3s ease;
+
+  word-spacing: normal; /* Ensure normal word spacing */
+  letter-spacing: 0; /* Reset letter spacing */
+  text-transform: none; /* Ensure text is not transformed */
+  white-space: nowrap; /* Prevent text from breaking into multiple lines */
+}
+
+.side-navbar ul li a:hover {
+  background-color: #e9dfdf; /* Light background on hover */
+  color: #333333; /* Dark text on hover */
+  padding-left: 15px; /* Indent on hover */
+}
+
+/* Active state for anchor links */
+.side-navbar ul li a.active {
+  background-color: #ffffff; /* White background for active link */
+  color: #333333; /* Dark text for active link */
+  font-weight: bold;
+}
+/* Main content area */
+.main-content {
+  margin-left: 250px; /* Same width as the side navbar */
+  padding: 20px;
+  box-sizing: border-box;
+  margin-top: 100px; /* Adjust to account for the fixed navbars */
+}

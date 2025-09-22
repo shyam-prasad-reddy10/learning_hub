@@ -1,0 +1,101 @@
+/* Center the login form */
+.login-container {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto; /* Horizontally center */
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  /* Flexbox for vertical and horizontal centering */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Hover effect for the login container */
+.login-container:hover {
+  transform: translate(-50%, -50%) translateY(-5px); /* Slight lift effect on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow for hover effect */
+}
+
+/* Form heading */
+.login-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  letter-spacing: 1px;
+}
+
+/* Input fields */
+.login-container .form-control {
+  width: 100%;
+  height: 45px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Input hover effect */
+.login-container .form-control:hover {
+  border-color: #007bff; /* Change border to blue on hover */
+  background-color: #f1faff; /* Light blue background on hover */
+}
+
+/* Input focus effect */
+.login-container .form-control:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Subtle shadow effect */
+}
+
+/* Submit button */
+.login-container .btn-primary {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Button hover effect */
+.login-container .btn-primary:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+/* Add spacing between form elements */
+.login-container .mb-3 {
+  margin-bottom: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 20px;
+    margin: 20px;
+  }
+  .login-container h1 {
+    font-size: 1.6rem;
+  }
+  .login-container .form-control {
+    height: 40px;
+  }
+  .login-container .btn-primary {
+    font-size: 1rem;
+  }
+}

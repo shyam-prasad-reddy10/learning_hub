@@ -1,0 +1,72 @@
+/* General navbar styling */
+.navbar {
+  background-color: #f8f9fa; /* Light background */
+  border-bottom: 1px solid #ddd; /* Subtle border at the bottom */
+  padding: 10px 20px;
+  position: fixed; /* Fix the navbar at the top */
+  top: 50px; /* Positioned below the Courses Navbar */
+  width: 100%; /* Ensure it spans the full width */
+  z-index: 1000; /* Ensure it stays above other elements */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Navbar brand styling */
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff; /* Blue color for the brand */
+  text-decoration: none;
+}
+
+.navbar-brand:hover {
+  color: #0056b3; /* Darker blue on hover */
+}
+
+/* Navbar links styling */
+.nav-link {
+  color: #555; /* Gray color for links */
+  font-size: 1rem;
+  margin-right: 15px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #007bff; /* Blue color on hover */
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color: #007bff; /* Highlight active link */
+}
+
+/* Navbar toggler styling */
+.navbar-toggler {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.navbar-toggler-icon {
+  background-color: #007bff; /* Blue toggler icon */
+  border-radius: 2px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar-nav {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .nav-link {
+    margin: 5px 0;
+  }
+}
