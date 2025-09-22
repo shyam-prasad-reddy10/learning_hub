@@ -21,7 +21,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git url: 'https://github.com/shyam-prasad-reddy10/learing_hub.git', branch: 'main'
+                git url: 'https://github.com/shyam-prasad-reddy10/learning_hub.git', branch: 'main'
             }
         }
 
