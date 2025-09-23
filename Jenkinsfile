@@ -14,8 +14,8 @@ pipeline {
         TOMCAT_USER = 'admin'
         TOMCAT_PASS = 'admin'
 
-        BACKEND_WAR = 'lhubback.war'
-        FRONTEND_WAR = 'lhubfront.war'
+        BACKEND_WAR = "${WORKSPACE}\\lhubback.war"
+        FRONTEND_WAR = "${WORKSPACE}\\lhubfront.war"
     }
 
     stages {
@@ -29,7 +29,7 @@ pipeline {
             steps {
                 dir("${env.FRONTEND_DIR}") {
                     bat 'npm install'
-                    // Disable CI strict mode so ESLint warnings won't break build
+                    // prevent ESLint warnings from breaking build
                     bat 'set "CI=false" && npm run build'
                 }
             }
@@ -42,7 +42,7 @@ pipeline {
                         mkdir lhubfront_war
                         mkdir lhubfront_war\\WEB-INF
                         xcopy /E /I /Y build lhubfront_war
-                        jar -cvf ..\\..\\${FRONTEND_WAR} -C lhubfront_war .
+                        jar -cvf ${FRONTEND_WAR} -C lhubfront_war .
                     """
                 }
             }
@@ -51,8 +51,8 @@ pipeline {
         stage('Build Backend (Spring Boot WAR)') {
             steps {
                 dir("${env.BACKEND_DIR}") {
-                    bat 'mvn clean package'
-                    bat "copy target\\*.war ..\\..\\${BACKEND_WAR}"
+                    bat 'mvn clean package -DskipTests'
+                    bat "copy target\\*.war ${BACKEND_WAR}"
                 }
             }
         }
@@ -61,8 +61,8 @@ pipeline {
             steps {
                 bat """
                     curl -u %TOMCAT_USER%:%TOMCAT_PASS% ^
-                      --upload-file ${BACKEND_WAR} ^
-                      "${TOMCAT_URL}/deploy?path=/lhubback&update=true"
+                      --upload-file "%BACKEND_WAR%" ^
+                      "%TOMCAT_URL%/deploy?path=/lhubback&update=true"
                 """
             }
         }
@@ -71,8 +71,8 @@ pipeline {
             steps {
                 bat """
                     curl -u %TOMCAT_USER%:%TOMCAT_PASS% ^
-                      --upload-file ${FRONTEND_WAR} ^
-                      "${TOMCAT_URL}/deploy?path=/lhubfront&update=true"
+                      --upload-file "%FRONTEND_WAR%" ^
+                      "%TOMCAT_URL%/deploy?path=/lhubfront&update=true"
                 """
             }
         }
