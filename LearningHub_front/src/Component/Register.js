@@ -38,7 +38,7 @@ const Register = () => {
     });
 
     // Make POST request to the backend with role as a query parameter
-    fetch(`http://localhost:9050/register?role=${formData.role}`, {
+    fetch(`http://localhost:9090/register?role=${formData.role}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
