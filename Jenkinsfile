@@ -25,10 +25,19 @@ pipeline {
             }
         }
 
+        stage('Clean Backend Build') {
+            steps {
+                dir("${env.BACKEND_DIR}") {
+                    bat 'if exist target rmdir /S /Q target'
+                    bat "if exist ${BACKEND_WAR} del /F /Q ${BACKEND_WAR}"
+                }
+            }
+        }
+
         stage('Build Frontend') {
             steps {
                 dir("${env.FRONTEND_DIR}") {
-                    bat 'npm install'
+                    bat 'npm ci'
                     // prevent ESLint warnings from breaking build
                     bat 'set "CI=false" && npm run build'
                 }
@@ -39,6 +48,7 @@ pipeline {
             steps {
                 dir("${env.FRONTEND_DIR}") {
                     bat """
+                        if exist lhubfront_war rmdir /S /Q lhubfront_war
                         mkdir lhubfront_war
                         mkdir lhubfront_war\\WEB-INF
                         xcopy /E /I /Y build lhubfront_war
@@ -60,8 +70,8 @@ pipeline {
         stage('Deploy Backend to Tomcat (/lhubback)') {
             steps {
                 bat """
-                    curl -u %TOMCAT_USER%:%TOMCAT_PASS% ^
-                      --upload-file "%BACKEND_WAR%" ^
+                    curl -u %TOMCAT_USER%:%TOMCAT_PASS% ^ 
+                      --upload-file "%BACKEND_WAR%" ^ 
                       "%TOMCAT_URL%/deploy?path=/lhubback&update=true"
                 """
             }
@@ -70,8 +80,8 @@ pipeline {
         stage('Deploy Frontend to Tomcat (/lhubfront)') {
             steps {
                 bat """
-                    curl -u %TOMCAT_USER%:%TOMCAT_PASS% ^
-                      --upload-file "%FRONTEND_WAR%" ^
+                    curl -u %TOMCAT_USER%:%TOMCAT_PASS% ^ 
+                      --upload-file "%FRONTEND_WAR%" ^ 
                       "%TOMCAT_URL%/deploy?path=/lhubfront&update=true"
                 """
             }
