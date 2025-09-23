@@ -25,7 +25,7 @@ const Login = () => {
     formBody.append("username", formData.username);
     formBody.append("password", formData.password);
 
-    fetch("http://localhost:9050/login", {
+    fetch("http://localhost:9090/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
