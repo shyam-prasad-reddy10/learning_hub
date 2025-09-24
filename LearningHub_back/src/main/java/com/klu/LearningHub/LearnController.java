@@ -23,7 +23,7 @@ public class LearnController {
     
 
     
-    @PostMapping("/register")
+    @PostMapping("http://localhost:9090/lhubback/register")
     @ResponseBody
     public boolean registerSubmit(@RequestBody Student student,@RequestParam("role") String role) {
         try {
@@ -51,7 +51,7 @@ public class LearnController {
     }
 
   
-	    @PostMapping("/login")
+	    @PostMapping("http://localhost:9090/lhubback/login")
 	    @ResponseBody
 	    public Map<String, Object> login(@RequestParam("username") String username,
 	                                     @RequestParam("password") String password) {
