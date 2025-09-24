@@ -40,7 +40,7 @@ import ModulePage from "./Component/ModulePage";
 
 function App() {
   return (
-    <Router>
+    <Router BrowserRouter basename="/lhubfront">
       <Routes>
         {/* Public Pages */}
         <Route path="/" element={<HomePage />} />
