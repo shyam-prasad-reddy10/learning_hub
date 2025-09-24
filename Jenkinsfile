@@ -57,7 +57,20 @@ pipeline {
                     bat """
                         mkdir lhubfront_war
                         mkdir lhubfront_war\\WEB-INF
+
+                        REM Copy build files
                         xcopy /E /I /Y build lhubfront_war
+
+                        REM Check if web.xml exists and copy
+                        if exist web.xml (
+                            echo web.xml found — copying to WEB-INF
+                            copy web.xml lhubfront_war\\WEB-INF\\web.xml
+                        ) else (
+                            echo ERROR: web.xml not found in ${env.FRONTEND_DIR}
+                            exit /b 1
+                        )
+
+                        REM Create WAR
                         jar -cvf ${FRONTEND_WAR} -C lhubfront_war .
                     """
                 }
