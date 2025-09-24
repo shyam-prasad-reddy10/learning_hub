@@ -16,6 +16,8 @@ pipeline {
 
         BACKEND_WAR = "${WORKSPACE}\\lhubback.war"
         FRONTEND_WAR = "${WORKSPACE}\\lhubfront.war"
+
+        TOMCAT_WEBAPPS = "C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\webapps"
     }
 
     stages {
@@ -31,6 +33,28 @@ pipeline {
                     bat 'if exist target rmdir /S /Q target'
                     bat "if exist ${BACKEND_WAR} del /F /Q ${BACKEND_WAR}"
                 }
+            }
+        }
+
+        stage('Clean Previous Backend WAR') {
+            steps {
+                bat """
+                    echo Cleaning previous backend WAR and exploded folder...
+                    curl -u %TOMCAT_USER%:%TOMCAT_PASS% "%TOMCAT_URL%/undeploy?path=/lhubback" || echo "No previous backend deployment found"
+                    if exist "${TOMCAT_WEBAPPS}\\lhubback.war" del /F /Q "${TOMCAT_WEBAPPS}\\lhubback.war"
+                    if exist "${TOMCAT_WEBAPPS}\\lhubback" rmdir /S /Q "${TOMCAT_WEBAPPS}\\lhubback"
+                """
+            }
+        }
+
+        stage('Clean Previous Frontend WAR') {
+            steps {
+                bat """
+                    echo Cleaning previous frontend WAR and exploded folder...
+                    curl -u %TOMCAT_USER%:%TOMCAT_PASS% "%TOMCAT_URL%/undeploy?path=/lhubfront" || echo "No previous frontend deployment found"
+                    if exist "${TOMCAT_WEBAPPS}\\lhubfront.war" del /F /Q "${TOMCAT_WEBAPPS}\\lhubfront.war"
+                    if exist "${TOMCAT_WEBAPPS}\\lhubfront" rmdir /S /Q "${TOMCAT_WEBAPPS}\\lhubfront"
+                """
             }
         }
 
