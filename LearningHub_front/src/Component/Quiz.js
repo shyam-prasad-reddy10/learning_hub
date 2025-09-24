@@ -2,6 +2,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
+import { getImagePath } from '../utils/imagePath'; // helper import
 
 const quizzes = [
   {
@@ -9,28 +10,28 @@ const quizzes = [
     path: "dbms",
     org: "Codecademy",
     type: "Multiple Choice",
-    img: "/images/data.jpg",
+    img: getImagePath("images/data.jpg"), // fixed
   },
   {
     title: "Programming and Development",
     path: "dev",
     org: "Coursera",
     type: "Code & Theory",
-    img: "/images/fullstack.jpg",
+    img: getImagePath("images/fullstack.jpg"), // fixed
   },
   {
     title: "Web Development",
     path: "webpage",
     org: "Meta",
     type: "Project-Based",
-    img: "/images/web.jpg",
+    img: getImagePath("images/web.jpg"), // fixed
   },
   {
     title: "Tools and Productivity",
     path: "tools",
     org: "Udemy",
     type: "Timed Quiz",
-    img: "/images/tool.jpg",
+    img: getImagePath("images/tool.jpg"), // fixed
     badge: "New"
   }
 ];

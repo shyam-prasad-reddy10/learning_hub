@@ -1,34 +1,35 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
+import { getImagePath } from '../utils/imagePath'; // import helper
 
 const certificates = [
   {
     title: "Database Management System",
     org: "Codecademy",
     type: "Multiple Choice",
-    img: "/images/data.jpg",
+    img: getImagePath("data.jpg"),
     link: "/certificates/dbms"
   },
   {
     title: "Programming and Development",
     org: "Coursera",
     type: "Code & Theory",
-    img: "/images/fullstack.jpg",
+    img: getImagePath("fullstack.jpg"),
     link: "/certificates/dev"
   },
   {
     title: "Web Development",
     org: "Meta",
     type: "Project-Based",
-    img: "/images/web.jpg",
+    img: getImagePath("web.jpg"),
     link: "/certificates/web"
   },
   {
     title: "Tools and Productivity",
     org: "Udemy",
     type: "Timed Quiz",
-    img: "/images/tool.jpg",
+    img: getImagePath("tool.jpg"),
     badge: "AI skills",
     link: "/certificates/tools"
   }

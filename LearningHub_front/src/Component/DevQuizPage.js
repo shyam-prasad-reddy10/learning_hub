@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getImagePath } from '../utils/imagePath'; // import helper
 
 const DevQuizPage = () => {
   const pageStyle = {
-    backgroundImage: "url('/images/fullstack.jpg')", // use the uploaded image path here
+    backgroundImage: `url(${getImagePath("fullstack.jpg")})`, // fixed path
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
@@ -57,10 +58,18 @@ const DevQuizPage = () => {
       <div style={contentStyle}>
         <h2 className="mb-4">Developer Quiz Modules</h2>
         <div className="d-grid gap-3">
-          <Link to="/quiz/dev/module1" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>Module 1: HTML Basics</Link>
-          <Link to="/quiz/dev/module2" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>Module 2: CSS & Layout</Link>
-          <Link to="/quiz/dev/module3" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>Module 3: JavaScript</Link>
-          <Link to="/quiz/dev/module4" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>Module 4: React</Link>
+          <Link to="/quiz/dev/module1" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>
+            Module 1: HTML Basics
+          </Link>
+          <Link to="/quiz/dev/module2" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>
+            Module 2: CSS & Layout
+          </Link>
+          <Link to="/quiz/dev/module3" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>
+            Module 3: JavaScript
+          </Link>
+          <Link to="/quiz/dev/module4" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>
+            Module 4: React
+          </Link>
         </div>
       </div>
     </div>

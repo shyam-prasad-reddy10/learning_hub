@@ -1,20 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Css/Navbar.css";
+import { getImagePath } from "../utils/imagePath"; // import helper
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        {/* Replace text with an image */}
+        {/* Logo */}
         <Link className="navbar-brand" to="/">
           <img
-            src="/logo.png" // Path relative to the public folder
+            src={getImagePath("logo.png")} // Use helper for proper path
             alt="Home"
-            className="navbar-logo" // Optional: Add a class for styling
-            style={{ height: "40px" }} // Optional: Inline style for height
+            className="navbar-logo"
+            style={{ height: "40px" }}
           />
         </Link>
+
         <button
           className="navbar-toggler"
           type="button"
@@ -26,6 +28,7 @@ const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
@@ -44,7 +47,8 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
+
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link className="nav-link" to="/login">
                 Login

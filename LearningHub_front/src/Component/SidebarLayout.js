@@ -3,6 +3,7 @@ import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { getImagePath } from '../utils/imagePath'; // helper import
 
 const SidebarLayout = () => {
   return (
@@ -20,7 +21,7 @@ const SidebarLayout = () => {
       >
         <Link to="/" className="mb-4 text-center">
           <img
-            src="/images/logo.png"
+            src={getImagePath("images/logo.png")} // ✅ fixed path
             alt="Home"
             style={{ width: '100px', cursor: 'pointer' }}
             className="mx-auto d-block"

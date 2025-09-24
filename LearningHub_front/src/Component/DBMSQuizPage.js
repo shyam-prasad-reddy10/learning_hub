@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getImagePath } from '../utils/imagePath'; // import helper
 
 const DBMSQuizPage = () => {
   const pageStyle = {
-    backgroundImage: "url('/images/data.jpg')", // use the uploaded image path here
+    backgroundImage: `url(${getImagePath("data.jpg")})`, // use helper
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
@@ -57,10 +58,18 @@ const DBMSQuizPage = () => {
       <div style={contentStyle}>
         <h2 className="mb-4">DBMS Quiz Modules</h2>
         <div className="d-grid gap-3">
-          <Link to="/quiz/dbms/module1" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>Module 1: Database Basics</Link>
-          <Link to="/quiz/dbms/module2" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>Module 2: SQL Queries</Link>
-          <Link to="/quiz/dbms/module3" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>Module 3: Normalization</Link>
-          <Link to="/quiz/dbms/module4" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>Module 4: Transactions</Link>
+          <Link to="/quiz/dbms/module1" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>
+            Module 1: Database Basics
+          </Link>
+          <Link to="/quiz/dbms/module2" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>
+            Module 2: SQL Queries
+          </Link>
+          <Link to="/quiz/dbms/module3" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>
+            Module 3: Normalization
+          </Link>
+          <Link to="/quiz/dbms/module4" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>
+            Module 4: Transactions
+          </Link>
         </div>
       </div>
     </div>

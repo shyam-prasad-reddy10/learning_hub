@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getImagePath } from '../utils/imagePath'; // Import helper
 
 const WebPageQuiz = () => {
   const pageStyle = {
-    backgroundImage: "url('/images/web.jpg')", // Use your specific image path here
+    backgroundImage: `url(${getImagePath("images/web.jpg")})`, // ✅ fixed path
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
@@ -57,10 +58,18 @@ const WebPageQuiz = () => {
       <div style={contentStyle}>
         <h2 className="mb-4">Web Page Development Quiz Modules</h2>
         <div className="d-grid gap-3">
-          <Link to="/quiz/webpage/module1" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>Module 1: HTML & Semantic Structure</Link>
-          <Link to="/quiz/webpage/module2" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>Module 2: CSS & Responsive Design</Link>
-          <Link to="/quiz/webpage/module3" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>Module 3: JavaScript & DOM Manipulation</Link>
-          <Link to="/quiz/webpage/module4" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>Module 4: Web Hosting & Optimization</Link>
+          <Link to="/quiz/webpage/module1" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>
+            Module 1: HTML & Semantic Structure
+          </Link>
+          <Link to="/quiz/webpage/module2" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>
+            Module 2: CSS & Responsive Design
+          </Link>
+          <Link to="/quiz/webpage/module3" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>
+            Module 3: JavaScript & DOM Manipulation
+          </Link>
+          <Link to="/quiz/webpage/module4" style={buttonStyle} onMouseEnter={hoverEffect} onMouseLeave={removeHover}>
+            Module 4: Web Hosting & Optimization
+          </Link>
         </div>
       </div>
     </div>
