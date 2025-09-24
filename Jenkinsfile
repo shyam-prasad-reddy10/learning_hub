@@ -85,7 +85,7 @@ pipeline {
                         REM Copy build files
                         xcopy /E /I /Y build lhubfront_war
 
-                        REM Check if web.xml exists and copy
+                        REM Copy web.xml if exists
                         if exist web.xml (
                             echo web.xml found — copying to WEB-INF
                             copy web.xml lhubfront_war\\WEB-INF\\web.xml
@@ -105,7 +105,7 @@ pipeline {
             steps {
                 dir("${env.BACKEND_DIR}") {
                     bat 'mvn clean package -DskipTests'
-                    bat "copy target\\*.war ${BACKEND_WAR}"
+                    bat "copy target\\lhubback.war ${BACKEND_WAR}"
                 }
             }
         }
